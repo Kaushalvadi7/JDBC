@@ -12,9 +12,11 @@ public class Crud_prepare_statement
          Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
          System.out.println("Connected to the database successfully!");
 
-         // insertStudent(connection, 11, "Renish");
-         // updateStudent(connection, "jyom", "jenish");
-         deleteStudent(connection, 7);
+         insertStudent(connection, 7, "Ram");
+         updateStudent(connection, "jenish", "jyot");
+         deleteStudent(connection, 11);
+         dataFetchFromStudent(connection);
+      
 
          connection.close();
       } catch (ClassNotFoundException | SQLException e) {
@@ -50,4 +52,23 @@ public class Crud_prepare_statement
       System.out.println(rowsAffected > 0 ? "Data Deleted Successfully!" : "Data Not Deleted!");
       preparedStatement.close();
    }
+   
+   private static void dataFetchFromStudent(Connection connection) throws SQLException {
+      String query = "SELECT * FROM student12";
+
+      PreparedStatement preparedStatement = connection.prepareStatement(query);
+      
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      while (resultSet.next()){
+         int id =resultSet.getInt("id");
+         String name = resultSet.getString("name");
+
+         System.out.println("ID:" + id + ", Name: " + name);
+      }
+
+      resultSet.close();
+      preparedStatement.close();
+   }
+
 }
