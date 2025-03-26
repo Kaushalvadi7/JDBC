@@ -4,7 +4,7 @@ public class StudentDB {
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/studentDB"; 
         String user = "root"; 
-        String password = "@Kaushal0007"; 
+        String password = "Password"; 
 
         try (Connection conn = DriverManager.getConnection(url, user, password); 
         Statement stmt = conn.createStatement()) {
